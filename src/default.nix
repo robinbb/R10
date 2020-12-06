@@ -23,7 +23,20 @@ in
   nixpkgs.buildEnv {
     name = "r10-env";
     paths = [
+      # Bootstrap R10.
       r10-nix
-      nixpkgs.cacert
-    ];
+    ] ++ (with nixpkgs; [
+      # Build some crucial packages.
+      bash
+      cacert
+      dash
+      gcc
+      gitMinimal
+      mosh
+      openssh
+      stow
+      tmux
+      tree
+      vim
+    ]);
   }
